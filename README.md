@@ -1,12 +1,12 @@
 ### web2_finalproject
-===============
+===
 ##Người thực hiện: 
 <br> 1560008 </t> Nguyễn Sanh Đình Anh
 ----------------
 
 <br><br>
-##Yêu cầu:
-#SITE ĐẤU GIÁ TRỰC TUYẾN
+##Yêu cầu: 
+<br>#SITE ĐẤU GIÁ TRỰC TUYẾN
 
 ==Người dùng nặc danh (ko đăng nhập) (0/24)==<br>
 []	Trang chủ<br>

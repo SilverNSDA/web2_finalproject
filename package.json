@@ -1,0 +1,32 @@
+{
+  "name": "web2_finalproject",
+  "version": "1.0.0",
+  "description": "Auction house",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SilverNSDA/web2_finalproject.git"
+  },
+  "keywords": [
+    "web2",
+    "auction"
+  ],
+  "author": "1560008",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SilverNSDA/web2_finalproject/issues"
+  },
+  "homepage": "https://github.com/SilverNSDA/web2_finalproject#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "express": "^4.16.2",
+    "morgan": "^1.9.0",
+    "mysql": "^2.15.0",
+    "q": "^1.5.1"
+  }
+}
