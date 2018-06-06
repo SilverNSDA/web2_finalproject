@@ -1,13 +1,18 @@
 var mysql_db = require('../mysql/db.js');
 
 class Repo {
-	constructor(table, id_col){
+	constructor(table, id_col = "id"){
 		this.table = table;
 		this.id_col = id_col;
 	}
 
 	loadAll(){
 		var sql = `select * from ${this.table}`;
+		return mysql_db.load(sql);
+	}
+
+	loadCol(col, val){
+		var sql = `select * from ${this.table} where ${col} = ${val}`;
 		return mysql_db.load(sql);
 	}
 

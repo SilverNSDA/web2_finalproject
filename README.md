@@ -27,11 +27,11 @@
 []	Thể hiện đầy đủ 3 hình ảnh<br>
 []	Có mô tả html<br>
 []	Thể hiện đầy đủ các thông tin của sản phẩm: tên, giá hiện tại, giá mua ngay (nếu có), người bán & điểm đánh giá (url), người đang giữ giá cao nhất & điểm đánh giá (url), thời điểm đăng, thời điểm kết thúc<br>
-[]	Đăng ký<br>
+[x]	Đăng ký<br>
 []	reCaptcha<br>
-[]	Mật khẩu được mã hoá md5 (yếu)<br>
-[]	Thông tin: họ tên, địa chỉ, email (quan trọng, không trùng, có thật)<br>
-[]	Đăng nhập<br>
+[x]	Mật khẩu được mã hoá md5 (yếu)<br>
+[x]	Thông tin: họ tên, địa chỉ, email (quan trọng, không trùng, có thật)<br>
+[x]	Đăng nhập<br>
 []	Đăng xuất <br>
 
 ==Người mua (người dùng đã đăng nhập) (0/17)==<br>
