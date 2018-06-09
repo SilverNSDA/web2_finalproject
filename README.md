@@ -32,7 +32,7 @@
 [x]	Mật khẩu được mã hoá md5 (yếu)<br>
 [x]	Thông tin: họ tên, địa chỉ, email (quan trọng, không trùng, có thật)<br>
 [x]	Đăng nhập<br>
-[]	Đăng xuất <br>
+[x]	Đăng xuất <br>
 
 ==Người mua (người dùng đã đăng nhập) (0/17)==<br>
 []	Lưu 1 sản phẩm vào danh sách yêu thích (Watch List)<br>

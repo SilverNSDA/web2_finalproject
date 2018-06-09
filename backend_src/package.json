@@ -24,10 +24,17 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.2",
+    "bootstrap": "^4.1.1",
+    "cookie-parser": "^1.4.3",
     "cors": "^2.8.4",
+    "ejs": "^2.6.1",
     "express": "^4.16.2",
+    "express-session": "^1.15.6",
+    "jquery": "^3.3.1",
     "morgan": "^1.9.0",
     "mysql": "^2.15.0",
-    "q": "^1.5.1"
+    "popper.js": "^1.14.3",
+    "q": "^1.5.1",
+    "req-flash": "0.0.3"
   }
 }

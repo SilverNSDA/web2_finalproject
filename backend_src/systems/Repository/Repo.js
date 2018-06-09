@@ -6,13 +6,15 @@ class Repo {
 		this.id_col = id_col;
 	}
 
-	loadAll(){
-		var sql = `select * from ${this.table}`;
+	loadAll(order_by = this.id_col, order ='', limit = 0){
+		var str = limit==0?'':`limit ${limit}`;
+		var sql = `select * from ${this.table} order by ${order_by} ${order} ${str}`;
 		return mysql_db.load(sql);
 	}
 
-	loadCol(col, val){
-		var sql = `select * from ${this.table} where ${col} = ${val}`;
+	loadCol(col, val, order_by = this.id_col, order ='', limit = 0){
+		var str = limit==0?'':`limit ${limit}`;
+		var sql = `select * from ${this.table} where ${col} = '${val}' order by ${order_by} ${order} ${str}`;
 		return mysql_db.load(sql);
 	}
 
@@ -54,4 +56,4 @@ class Repo {
 	}
 }
 
-module.exports.Repo = Repo;
+module.exports = Repo;
