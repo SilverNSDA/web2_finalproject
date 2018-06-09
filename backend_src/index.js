@@ -30,8 +30,11 @@ app.use(cookieParser());
 //Config
 app.set('views',path.resolve(__dirname+'/../frontend_src/views'));
 app.set('view engine', 'ejs');
+
+//Css and js
 app.use(express.static(path.resolve(__dirname+'/../frontend_src/views')));
 app.use(express.static(path.resolve(__dirname+'/node_modules/bootstrap/dist')));
+app.use(express.static(path.resolve(__dirname+'/node_modules/jquery/dist')));
 
 //Authentication
 app.use(session({
