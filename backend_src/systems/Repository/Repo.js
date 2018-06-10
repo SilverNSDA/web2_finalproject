@@ -31,7 +31,7 @@ class Repo {
 	add(vals){
 		var col_name = '';
 		var col_val = '';
-		for(key in vals){
+		for(var key in vals){
 			if(key!=undefined){
 				col_name+=`${key},`;
 				col_val+=`'${vals[key]}',`;
@@ -45,7 +45,7 @@ class Repo {
 
 	update(id, vals){
 		var pro = '';
-		for(key in vals){
+		for(var key in vals){
 			if(key!=undefined){
 				pro += `${key} = '${vals[key]},'`;
 			}

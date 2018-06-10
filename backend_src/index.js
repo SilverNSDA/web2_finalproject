@@ -7,7 +7,7 @@ var express = require('express'),
 	session = require('express-session'),
 	cookieParser = require('cookie-parser');
 
-var auth = require('./users/auth_middleware.js');
+
 var path = require('path');
 var flash = require('req-flash');
 // var bootstrap = require('bootstrap');
@@ -15,6 +15,9 @@ var app = express();
 
 app.use(morgan('dev'));
 app.use(cors());
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
@@ -61,18 +64,16 @@ app.use((req,res,next)=>{
 	}
 	// console.log(req.session.user);
 	// console.log(res.locals.user);
-	console.log(res.locals);
+	// console.log(res.locals);
 	// console.log(req.session);
 	// console.log('abcxyz');
 	next();
 });
 // Controller
+var auth = require('./users/auth_middleware.js');
+var indexCtrl = require('./controller/indexController.js');
+app.use('/',auth, indexCtrl);
 
-
-app.use('/',auth);
-app.get('/',(req,res)=>{
-	res.render('index');
-});
 
 //log
 

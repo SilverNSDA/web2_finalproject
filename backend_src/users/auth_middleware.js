@@ -14,7 +14,7 @@ router.get('/login',(req, res)=>{
 	res.render('login',);
 });
 
-router.post('/logout',auth.logout);
+router.get('/logout',auth.logout);
 
 router.get('/register',(req,res)=>{
 	res.render('register',{flash: {success: req.flash('success'),

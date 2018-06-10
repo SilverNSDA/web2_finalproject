@@ -4,8 +4,9 @@ var bcrypt = require('bcryptjs')
 var usersRepo = new repo('users');
 
 exports.register = function(req, res){
-	var today = new Date();
+	var today = new Date().toISOString().slice(0, 19).replace('T', ' ');;
 	var pass;
+	console.log(req.body);
 	if(!(req.body.password === req.body.passConf)){
 		req.flash('error', 'Comfirm password not match');
 		res.redirect('/register');
@@ -18,8 +19,8 @@ exports.register = function(req, res){
 	    "hoten":req.body.hoten,
 	    "diachi":req.body.diachi,
 	    "role":req.body.role, // role: 0 = admins, 1 = seller, 2 = client
-	    "created":today,
-	    "modified":today
+	    "created_date":today,
+	    "last_modified_date":today
   	}
 
   	usersRepo.add(users)
@@ -32,9 +33,10 @@ exports.register = function(req, res){
   				"role": r==0? "Administrator": (r==1? "Seller":"Client")
   			}
   			res.statusCode = 200;
-  			res.json(poco);
+  			// res.json(poco);
+  			res.redirect('/');
   		})
-  		.cacth(err=>{
+  		.catch(err=>{
   			console.log(err);
 			res.statusCode = 500;
 			res.end();
@@ -57,6 +59,7 @@ exports.login = function(req, res){
 			else{
 				var row = rows[0];
 				if(bcrypt.compareSync(password, row.password)){
+					var r = row.role;
 					req.session.user = {
 						id: row.id,
 						name: row.username,
