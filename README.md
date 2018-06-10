@@ -9,7 +9,7 @@
 <br>#SITE ĐẤU GIÁ TRỰC TUYẾN
 
 ==Người dùng nặc danh (ko đăng nhập) (0/24)==<br>
-[]	Trang chủ<br>
+[x]	Trang chủ<br>
 []	Top 5 sản phẩm có nhiều lượt ra giá nhất<br>
 []	Top 5 sản phẩm có giá cao nhất<br>
 []	Top 5 sản phẩm gần kết thúc<br>
