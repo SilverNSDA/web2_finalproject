@@ -10,9 +10,9 @@
 
 ==Người dùng nặc danh (ko đăng nhập) (0/24)==<br>
 [x]	Trang chủ<br>
-[]	Top 5 sản phẩm có nhiều lượt ra giá nhất<br>
-[]	Top 5 sản phẩm có giá cao nhất<br>
-[]	Top 5 sản phẩm gần kết thúc<br>
+[x]	Top 5 sản phẩm có nhiều lượt ra giá nhất<br>
+[x]	Top 5 sản phẩm có giá cao nhất<br>
+[x]	Top 5 sản phẩm gần kết thúc<br>
 []	Tìm kiếm sản phẩm<br>
 []	Tìm theo tên and/or Tìm theo danh mục<br>
 []	Phân trang kết quả<br>

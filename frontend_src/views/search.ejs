@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%-include('./include/header') %>
+
+<body>
+	<link rel="stylesheet" href="./assets/css/search.css" type="text/css">
+	<%-include('./include/nav') %>
+	<div class="container">
+		<form action="/search">
+			<input type="text" name="search" value=<%= searchStr %> placeholder="Search">
+			<button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+		</form>
+	</div>
+
+
+
+	<script src="./assets/js/search.js"></script>
+</body>
+</html>

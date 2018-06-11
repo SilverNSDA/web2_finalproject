@@ -6,15 +6,69 @@ class Repo {
 		this.id_col = id_col;
 	}
 
-	loadAll(order_by = this.id_col, order ='', limit = 0){
-		var str = limit==0?'':`limit ${limit}`;
-		var sql = `select * from ${this.table} order by ${order_by} ${order} ${str}`;
+	// loadCustom(sql){
+	// 	return mysql_db.load(sql);
+	// }
+
+	loadAll(options ={}){
+		var default_options = {
+			order_by: this.id_col,
+			order : '',
+			limit : 0
+		};
+		if(!("order_by" in options)){
+			options.order_by = default_options.order_by;
+		}
+		if(!("order" in options)){
+			options.order = default_options.order;
+		}
+		if(!("limit" in options)){
+			options.limit = default_options.limit;
+		}
+		var str = options.limit==0?'':`limit ${options.limit}`;
+		var sql = `select * from ${this.table} order by ${options.order_by} ${options.order} ${str}`;
+		// console.log(sql);
 		return mysql_db.load(sql);
 	}
 
-	loadCol(col, val, order_by = this.id_col, order ='', limit = 0){
-		var str = limit==0?'':`limit ${limit}`;
-		var sql = `select * from ${this.table} where ${col} = '${val}' order by ${order_by} ${order} ${str}`;
+	loadCol(col, vals, options ={}){
+		var default_options = {
+			order_by: this.id_col,
+			order : '',
+			limit : 0
+		};
+		if(!("order_by" in options)){
+			options.order_by = default_options.order_by;
+		}
+		if(!("order" in options)){
+			options.order = default_options.order;
+		}
+		if(!("limit" in options)){
+			options.limit = default_options.limit;
+		}
+		var str = options.limit==0?'':`limit ${options.limit}`;
+		var sql = `select * from ${this.table} where ${col} = '${vals}' order by ${options.order_by} ${options.order} ${str}`;
+		return mysql_db.load(sql);
+	}
+
+	loadCount(count_col, group_by,  options ={}){
+		var default_options = {
+			order_by: group_by,
+			order : '',
+			limit : 0
+		};
+		if(!("order_by" in options)){
+			options.order_by = default_options.order_by;
+		}
+		if(!("order" in options)){
+			options.order = default_options.order;
+		}
+		if(!("limit" in options)){
+			options.limit = default_options.limit;
+		}
+		var str = options.limit==0?'':`limit ${options.limit}`;
+		var sql = `select ${group_by}, count(${count_col})  as count from ${this.table} group by ${group_by} order by ${options.order_by} ${options.order} ${str}`
+		// console.log(sql);
 		return mysql_db.load(sql);
 	}
 

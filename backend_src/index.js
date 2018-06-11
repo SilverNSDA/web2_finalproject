@@ -30,6 +30,7 @@ app.use(cookieParser());
 // });
 
 
+
 //Config
 app.set('views',path.resolve(__dirname+'/../frontend_src/views'));
 app.set('view engine', 'ejs');
@@ -38,6 +39,8 @@ app.set('view engine', 'ejs');
 app.use(express.static(path.resolve(__dirname+'/../frontend_src/views')));
 app.use(express.static(path.resolve(__dirname+'/node_modules/bootstrap/dist')));
 app.use(express.static(path.resolve(__dirname+'/node_modules/jquery/dist')));
+//font awesome
+app.use(express.static(path.resolve(__dirname+'/node_modules/font-awesome/')));
 
 //Authentication
 app.use(session({
