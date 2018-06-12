@@ -8,16 +8,16 @@
 ##Yêu cầu: 
 <br>#SITE ĐẤU GIÁ TRỰC TUYẾN
 
-==Người dùng nặc danh (ko đăng nhập) (0/24)==<br>
+==Người dùng nặc danh (ko đăng nhập) (12+2/24)==<br>
 [x]	Trang chủ<br>
 [x]	Top 5 sản phẩm có nhiều lượt ra giá nhất<br>
 [x]	Top 5 sản phẩm có giá cao nhất<br>
 [x]	Top 5 sản phẩm gần kết thúc<br>
-[]	Tìm kiếm sản phẩm<br>
+[x]	Tìm kiếm sản phẩm<br>
 []	Tìm theo tên and/or Tìm theo danh mục<br>
-[]	Phân trang kết quả<br>
-[]	Có số trang cụ thể<br>
-[]	Hoặc KHÔNG (load more button + ajax)<br>
+[x]	Phân trang kết quả<br>
+[x]	Có số trang cụ thể<br>
+[o]	Hoặc KHÔNG (load more button + ajax)<br>
 []	Sắp xếp theo ý người dùng<br>
 []	Thời gian kết thúc giảm dần<br>
 []	Giá tăng dần<br>
@@ -28,7 +28,7 @@
 []	Có mô tả html<br>
 []	Thể hiện đầy đủ các thông tin của sản phẩm: tên, giá hiện tại, giá mua ngay (nếu có), người bán & điểm đánh giá (url), người đang giữ giá cao nhất & điểm đánh giá (url), thời điểm đăng, thời điểm kết thúc<br>
 [x]	Đăng ký<br>
-[]	reCaptcha<br>
+[o]	reCaptcha<br>
 [x]	Mật khẩu được mã hoá md5 (yếu)<br>
 [x]	Thông tin: họ tên, địa chỉ, email (quan trọng, không trùng, có thật)<br>
 [x]	Đăng nhập<br>

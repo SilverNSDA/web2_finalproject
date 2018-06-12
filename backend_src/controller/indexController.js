@@ -46,8 +46,29 @@ router.get('/top5ending', (req,res)=>{
 });
 
 router.get('/search',(req,res)=>{
+	let limit = 1;
 	var searchStr = req.query.search;
-	res.render('search',{searchStr: searchStr});
+	var page = req.query.page || 1;
+	var keys = searchStr.split(" ");
+	var upper_limit = limit*(page);
+	var lower_limit = limit*(page-1);
+	var data_end = false;
+	// console.log(limit);
+	// console.log(page);
+	// console.log(String(lower_limit)+','+String(upper_limit));
+	productsRepo.loadCol('ProName', keys,{limit:String(lower_limit)+','+String(upper_limit)})
+		.then(rows=>{
+			// res.json(rows);
+			data_end = (rows.length < limit);
+			res.render('search',{searchStr: searchStr, page: page, data: rows, end : data_end});
+			
+		}).catch(err => {
+	        console.log(err);
+	        res.statusCode = 500;
+	        res.end('View error log on console.');
+	    });
+
+	
 });
 
 

@@ -37,10 +37,12 @@ app.set('view engine', 'ejs');
 
 //Css and js
 app.use(express.static(path.resolve(__dirname+'/../frontend_src/views')));
-app.use(express.static(path.resolve(__dirname+'/node_modules/bootstrap/dist')));
-app.use(express.static(path.resolve(__dirname+'/node_modules/jquery/dist')));
+app.use(express.static(path.resolve(__dirname+'/node_modules/bootstrap/')));
+app.use(express.static(path.resolve(__dirname+'/node_modules/jquery/')));
 //font awesome
 app.use(express.static(path.resolve(__dirname+'/node_modules/font-awesome/')));
+//infinite croll
+app.use(express.static(path.resolve(__dirname+'./node_modules/infinite-scroll/')))
 
 //Authentication
 app.use(session({
@@ -67,8 +69,8 @@ app.use((req,res,next)=>{
 	}
 	// console.log(req.session.user);
 	// console.log(res.locals.user);
-	// console.log(res.locals);
-	// console.log(req.session);
+	console.log(res.locals);
+	console.log(req.body);
 	// console.log('abcxyz');
 	next();
 });

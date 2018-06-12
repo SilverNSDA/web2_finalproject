@@ -46,8 +46,14 @@ class Repo {
 		if(!("limit" in options)){
 			options.limit = default_options.limit;
 		}
+		var valsStr = '';
+		vals.forEach(e=>{
+			valsStr+=''+String(e)+'|';
+		});
+		valsStr = valsStr.substr(0, valsStr.length-1);
+
 		var str = options.limit==0?'':`limit ${options.limit}`;
-		var sql = `select * from ${this.table} where ${col} = '${vals}' order by ${options.order_by} ${options.order} ${str}`;
+		var sql = `select * from ${this.table} where ${col} REGEXP '${valsStr}' order by ${options.order_by} ${options.order} ${str}`;
 		return mysql_db.load(sql);
 	}
 
