@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+	<%-include('./include/header'); %>
+<body>
+	<h1> New product </h1>
+	<br>
+	<form action="./newproduct" method="POST" enctype="multipart/form-data">
+		<table border="0.2rem">
+			<tr>
+				<th> Product name </th>
+				<td> <input type="text" name="proname" placeholder="Chair"></td>
+			</tr>
+			<tr>
+				<th> Image 1 </th>
+				<td> <input type="file" name="img_1"></td>
+			</tr>
+			<tr>
+				<th> Image 2 </th>
+				<td> <input type="file" name="img_2"> </td>
+			</tr>
+			<tr>
+				<th> Image 3 </th>
+				<td> <input type="file" name="img_3"> </td>
+			</tr>
+			<tr>
+				<th> Description </th>
+				<td> <input type="textarea" name="description" placeholder="This is a chair"></td>
+			</tr>
+		</table>
+		<button type="submit">Create product</button>
+</body>
+</html>

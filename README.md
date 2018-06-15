@@ -6,8 +6,10 @@
 
 <br><br>
 ##Yêu cầu: 
-<br>#SITE ĐẤU GIÁ TRỰC TUYẾN
+<br>#SITE ĐẤU GIÁ TRỰC TUYẾN<br>
 
+
+x = done ; o = omit<br>
 ==Người dùng nặc danh (ko đăng nhập) (12+2/24)==<br>
 [x]	Trang chủ<br>
 [x]	Top 5 sản phẩm có nhiều lượt ra giá nhất<br>
@@ -24,7 +26,7 @@
 []	Những sản phẩm mới đăng trong vòng N phút sẽ có thể hiện khác các sản phẩm còn lại<br>
 []	Thể hiện đủ các thông tin: 1 hình ảnh, tên sản phẩm, giá hiện tại, người dùng đang giữ giá (mã hoá),  giá mua ngay (nếu có), thời gian còn lại, số lượt ra giá hiện tại<br>
 []	Xem chi tiết sản phẩm đấu giá<br>
-[]	Thể hiện đầy đủ 3 hình ảnh<br>
+[x]	Thể hiện đầy đủ 3 hình ảnh<br>
 []	Có mô tả html<br>
 []	Thể hiện đầy đủ các thông tin của sản phẩm: tên, giá hiện tại, giá mua ngay (nếu có), người bán & điểm đánh giá (url), người đang giữ giá cao nhất & điểm đánh giá (url), thời điểm đăng, thời điểm kết thúc<br>
 [x]	Đăng ký<br>
@@ -79,8 +81,8 @@
 []	Xoá<br>
 []	Sửa<br>
 
-==Hệ thống (0/15)==<br>
-[]	Với mỗi giao dịch “quan trọng”, hệ thống gửi 1 email cho các bên liên quan nhằm thông báo<br>
+==Hệ thống (0-1/15)==<br>
+[o]	Với mỗi giao dịch “quan trọng”, hệ thống gửi 1 email cho các bên liên quan nhằm thông báo<br>
 []	Ra giá thành công, giá sản phẩm được cập nhật<br>
 []	Gửi người bán<br>
 []	Gửi người ra giá<br>

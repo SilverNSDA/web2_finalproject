@@ -42,7 +42,9 @@ app.use(express.static(path.resolve(__dirname+'/node_modules/jquery/')));
 //font awesome
 app.use(express.static(path.resolve(__dirname+'/node_modules/font-awesome/')));
 //infinite croll
-app.use(express.static(path.resolve(__dirname+'./node_modules/infinite-scroll/')))
+// app.use(express.static(path.resolve(__dirname+'./node_modules/infinite-scroll/')));
+//Storage
+app.use(express.static(path.resolve(__dirname+'/storage')));
 
 //Authentication
 app.use(session({
@@ -56,6 +58,7 @@ app.use(session({
 }));
 
 app.use(flash());
+//middleware
 app.use((req,res,next)=>{
 	res.locals._flash = req.session._flash;
 	if(typeof req.session.user != 'undefined')
@@ -69,15 +72,40 @@ app.use((req,res,next)=>{
 	}
 	// console.log(req.session.user);
 	// console.log(res.locals.user);
-	console.log(res.locals);
-	console.log(req.body);
-	// console.log('abcxyz');
+	// console.log(res.locals);
+	// console.log(req.body);
+	// console.log(app._router.stack);
+	// console.log('asdsad');
 	next();
 });
+app.use('/products',(req, res, next)=>{
+		// console.log(req.session.user);
+		// console.log(res.locals.user.id);
+		if(res.locals.user.id == ''){
+			// console.log('check');
+			// res.statusCode = 401;
+			res.redirect('/login');	
+		}
+		else{
+			if(res.locals.user.role !== 'seller'){
+				res.redirect('/');
+			}
+			else{
+				next();
+			}
+			
+		}
+	});
+
+
 // Controller
-var auth = require('./users/auth_middleware.js');
+var auth = require('./users/auth_controller.js');
 var indexCtrl = require('./controller/indexController.js');
+var productCtrl = require('./products/products.js');
+app.use('/products',productCtrl);
 app.use('/',auth, indexCtrl);
+
+
 
 
 //log

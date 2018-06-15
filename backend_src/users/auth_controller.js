@@ -1,17 +1,17 @@
 var router = require('express').Router();
 var auth = require('./auth.js');
-function checkAuth(req, res, next){
-	if(!req.session.user_id){
-		res.send('Please log in to view this page');
-	}
-	else{
-		next();
-	}
-}
+// function checkAuth(req, res, next){
+// 	if(req.session.user.id == ''){
+// 		res.send('Please log in to view this page');
+// 	}
+// 	else{
+// 		next();
+// 	}
+// }
 
 router.post('/login',auth.login);
 router.get('/login',(req, res)=>{
-	res.render('login',);
+	res.render('login');
 });
 
 router.get('/logout',auth.logout);
@@ -26,4 +26,5 @@ router.get('/register',(req,res)=>{
 });
 router.post('/register',auth.register);
 
+// exports.checkAuth = checkAuth;
 module.exports = router;

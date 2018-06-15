@@ -4,7 +4,7 @@ var bcrypt = require('bcryptjs')
 var usersRepo = new repo('users');
 
 exports.register = function(req, res){
-	var today = new Date().toISOString().slice(0, 19).replace('T', ' ');;
+	var today = new Date().toISOString().slice(0, 19).replace('T', ' ');
 	var pass;
 	console.log(req.body);
 	if(!(req.body.password === req.body.passConf)){

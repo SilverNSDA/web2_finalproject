@@ -32,6 +32,14 @@ class Repo {
 	}
 
 	loadCol(col, vals, options ={}){
+		// console.log(vals);
+		var x = [];
+		if(typeof vals !== typeof []){
+			x.push(String(vals));
+			vals = x;
+			x= null;
+			// console.log(vals);
+		}
 		var default_options = {
 			order_by: this.id_col,
 			order : '',
@@ -47,6 +55,7 @@ class Repo {
 			options.limit = default_options.limit;
 		}
 		var valsStr = '';
+		// console.log(typeof vals);
 		vals.forEach(e=>{
 			valsStr+=''+String(e)+'|';
 		});
