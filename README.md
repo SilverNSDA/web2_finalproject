@@ -10,7 +10,7 @@
 
 
 x = done ; o = omit<br>
-==Người dùng nặc danh (ko đăng nhập) (12+2/24)==<br>
+==Người dùng nặc danh (ko đăng nhập) (13+2/24)==<br>
 [x]	Trang chủ<br>
 [x]	Top 5 sản phẩm có nhiều lượt ra giá nhất<br>
 [x]	Top 5 sản phẩm có giá cao nhất<br>

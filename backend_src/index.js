@@ -36,7 +36,7 @@ app.set('views',path.resolve(__dirname+'/../frontend_src/views'));
 app.set('view engine', 'ejs');
 
 //Css and js
-app.use(express.static(path.resolve(__dirname+'/../frontend_src/views')));
+app.use(express.static(path.resolve(__dirname+'/../frontend_src/views/')));
 app.use(express.static(path.resolve(__dirname+'/node_modules/bootstrap/')));
 app.use(express.static(path.resolve(__dirname+'/node_modules/jquery/')));
 //font awesome
@@ -45,6 +45,8 @@ app.use(express.static(path.resolve(__dirname+'/node_modules/font-awesome/')));
 // app.use(express.static(path.resolve(__dirname+'./node_modules/infinite-scroll/')));
 //Storage
 app.use(express.static(path.resolve(__dirname+'/storage')));
+//Wysiwyg
+app.use(express.static(path.resolve(__dirname+'/node_modules/froala-editor/')));
 
 //Authentication
 app.use(session({

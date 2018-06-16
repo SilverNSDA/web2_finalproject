@@ -2,6 +2,7 @@
 <html lang="en">
 	<%-include('./include/header'); %>
 <body>
+	<%-include('./include/nav') %>
 	<h1> New product </h1>
 	<br>
 	<form action="./newproduct" method="POST" enctype="multipart/form-data">
@@ -24,9 +25,16 @@
 			</tr>
 			<tr>
 				<th> Description </th>
-				<td> <input type="textarea" name="description" placeholder="This is a chair"></td>
+				<td> <textarea name="description" id="editor" cols="70" rows="10"></textarea></td>
 			</tr>
 		</table>
 		<button type="submit">Create product</button>
+
+		<!-- <script src="./assets/js/description-editor.js"></script> -->
+		<script>
+			$(function(){
+				$('textarea#editor').froalaEditor();
+			});
+		</script>
 </body>
 </html>
