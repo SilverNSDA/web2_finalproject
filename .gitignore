@@ -61,4 +61,4 @@ typings/
 .next
 
 # images storage for mysql
-storage/*
+backend_src/storage/*
