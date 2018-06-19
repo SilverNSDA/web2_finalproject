@@ -155,6 +155,19 @@ router.post('/newauction',(req,res)=>{
 		})
 });
 
+router.post('/auctions_list',(req,res)=>{
+	var id = res.locals.user.id;
+	db.load(`SELECT p.*, a.current_price, a.created_date, a.end_date FROM auction a left JOIN products p On a.product_id=p.id and a.seller=p.seller`)
+		.then(rows=>{
+			res.statusCode=200;
+			res.json(rows);
+		})
+		.catch(err=>{
+			console.log(err);
+			res.statusCode = 500;
+			res.end();
+		});
+});
 
 
 
