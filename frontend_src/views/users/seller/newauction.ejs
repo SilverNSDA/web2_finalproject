@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+	<%-include('./include/header'); %>
+<body>
+	<%-include('./include/nav') %>
+	<h1> New auction </h1>
+	<br>
+	<form action="./newauction" method="POST">
+		<input type="hidden" name="pro_id" value="<%-pro.id; %>">
+		<input type="hidden" name="seller" value="<%-locals.user.id; %>">
+		<table border="0.2rem">
+			<tr>
+				<th>Products</th>
+				<td><input type="text" value="<%- pro.ProName; %>" disabled></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>Start price</th>
+				<td><input type="number" name="start_price" id="number" placeholder="100000" required> $</td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>Price step</th>
+				<td><input type="number" name="price_step" id="number" placeholder="1000" required> $</td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>Instant buyout</th>
+				<td><input type="number" name="instant_buyout" id="number" required> $</td>
+				<td><small>Set it as 0 to disable instant buyout</small></td>
+			</tr>
+		</table>
+		<button type="submit">Create product</button>
+		<!-- <script type="text/javascript" src="/assets/js/newauction.js"></script> -->
+
+</body>
+</html>

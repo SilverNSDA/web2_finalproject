@@ -30,7 +30,7 @@ exports.register = function(req, res){
   				"id":insertID,
   				"username":req.body.username,
   				"email": req.body.email,
-  				"role": r==0? "Administrator": (r==1? "Seller":"Client")
+  				"role": r
   			}
   			res.statusCode = 200;
   			// res.json(poco);

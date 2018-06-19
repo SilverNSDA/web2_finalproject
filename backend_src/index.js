@@ -80,7 +80,7 @@ app.use((req,res,next)=>{
 	// console.log('asdsad');
 	next();
 });
-app.use('/products',(req, res, next)=>{
+app.use('/user',(req, res, next)=>{
 		// console.log(req.session.user);
 		// console.log(res.locals.user.id);
 		if(res.locals.user.id == ''){
@@ -89,12 +89,12 @@ app.use('/products',(req, res, next)=>{
 			res.redirect('/login');	
 		}
 		else{
-			if(res.locals.user.role !== 'seller'){
-				res.redirect('/');
-			}
-			else{
+			// if(res.locals.user.role !== 'seller'){
+			// 	res.redirect('/');
+			// }
+			// else{
 				next();
-			}
+			// }
 			
 		}
 	});
@@ -103,9 +103,13 @@ app.use('/products',(req, res, next)=>{
 // Controller
 var auth = require('./users/auth_controller.js');
 var indexCtrl = require('./controller/indexController.js');
-var productCtrl = require('./products/products.js');
-app.use('/products',productCtrl);
-app.use('/',auth, indexCtrl);
+// var productCtrl = require('./products/products.js');
+var userCtrl = require('./users/userCtrl.js');
+var sellerCtrl = require('./users/seller/sellerCtrl.js');
+// app.use('/products',productCtrl);
+app.use('/',auth, indexCtrl, userCtrl);
+app.use('/user',userCtrl);
+app.use('/seller', sellerCtrl);
 
 
 

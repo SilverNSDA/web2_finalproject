@@ -6,6 +6,7 @@
 <body>
 	<link rel="stylesheet" href="./assets/css/search.css" type="text/css">
 	<%-include('./include/nav'); %>
+	<%-include('./include/message'); %>
 	<div class="container">
 		<form action="/search">
 			<input type="text" name="search" value=<%= searchStr; %> placeholder="Search">

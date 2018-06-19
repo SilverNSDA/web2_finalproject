@@ -7,10 +7,11 @@
 <br><br>
 ##Yêu cầu: 
 <br>#SITE ĐẤU GIÁ TRỰC TUYẾN<br>
+Overall(16+6+3+2=27/78)
 
 
-x = done ; o = omit<br>
-==Người dùng nặc danh (ko đăng nhập) (13+2/24)==<br>
+x = done ; o = ommit ; r = replaced with other feature ; p = partly done<br>
+==Người dùng nặc danh (ko đăng nhập) (14+2+0+2=18/24)==<br>
 [x]	Trang chủ<br>
 [x]	Top 5 sản phẩm có nhiều lượt ra giá nhất<br>
 [x]	Top 5 sản phẩm có giá cao nhất<br>
@@ -24,11 +25,11 @@ x = done ; o = omit<br>
 []	Thời gian kết thúc giảm dần<br>
 []	Giá tăng dần<br>
 []	Những sản phẩm mới đăng trong vòng N phút sẽ có thể hiện khác các sản phẩm còn lại<br>
-[]	Thể hiện đủ các thông tin: 1 hình ảnh, tên sản phẩm, giá hiện tại, người dùng đang giữ giá (mã hoá),  giá mua ngay (nếu có), thời gian còn lại, số lượt ra giá hiện tại<br>
+[p]	Thể hiện đủ các thông tin: 1 hình ảnh, tên sản phẩm, giá hiện tại, người dùng đang giữ giá (mã hoá),  giá mua ngay (nếu có), thời gian còn lại, số lượt ra giá hiện tại<br>
 []	Xem chi tiết sản phẩm đấu giá<br>
 [x]	Thể hiện đầy đủ 3 hình ảnh<br>
-[]	Có mô tả html<br>
-[]	Thể hiện đầy đủ các thông tin của sản phẩm: tên, giá hiện tại, giá mua ngay (nếu có), người bán & điểm đánh giá (url), người đang giữ giá cao nhất & điểm đánh giá (url), thời điểm đăng, thời điểm kết thúc<br>
+[x]	Có mô tả html<br>
+[p]	Thể hiện đầy đủ các thông tin của sản phẩm: tên, giá hiện tại, giá mua ngay (nếu có), người bán & điểm đánh giá (url), người đang giữ giá cao nhất & điểm đánh giá (url), thời điểm đăng, thời điểm kết thúc<br>
 [x]	Đăng ký<br>
 [o]	reCaptcha<br>
 [x]	Mật khẩu được mã hoá md5 (yếu)<br>
@@ -55,20 +56,20 @@ x = done ; o = omit<br>
 []	Được phép đánh giá người bán +1 hoặc -1, gửi kèm 1 đoạn nhận xét<br>
 []	Xin được bán trong vòng 7 ngày<br>
 
-==Người bán (người dùng có quyền đăng bán & đã đăng nhập) (0/13)==<br>
-[]	Đăng 1 sản phẩm lên đấu giá<br>
-[]	Nhập đủ thông tin: tên sản phẩm, tối đa 3 ảnh, giá khởi điểm, bước giá, giá mua ngay (nếu cần), thời gian đăng, mô tả (html)<br>
-[]	Có tự động gia hạn ko? Nếu có, khi có lượt đấu giá mới trước khi kết thúc 5 phút, sản phẩm tự động gia hạn thêm 10p.<br>
-[]	Xem chi tiết sản phẩm<br>
-[]	Cập nhật thông tin sản phẩm đã đăng<br>
-[]	Chỉ cho phép THÊM thông tin mô tả (thể hiện xem ở desc.txt)<br>
+==Người bán (người dùng có quyền đăng bán & đã đăng nhập) (2+3+3+0=8/13)==<br>
+[x]	Đăng 1 sản phẩm lên đấu giá<br>
+[x]	Nhập đủ thông tin: tên sản phẩm, tối đa 3 ảnh, giá khởi điểm, bước giá, giá mua ngay (nếu cần), thời gian đăng, mô tả (html)<br>
+[r]	Có tự động gia hạn ko? Nếu có, khi có lượt đấu giá mới trước khi kết thúc 5 phút, sản phẩm tự động gia hạn thêm 10p.<br>
+[r]	Xem chi tiết sản phẩm<br>
+[o]	Cập nhật thông tin sản phẩm đã đăng<br>
+[o]	Chỉ cho phép THÊM thông tin mô tả (thể hiện xem ở desc.txt)<br>
 []	Xem lịch sử ra giá => KICK người mua ra khỏi sản phẩm<br>
 []	Người mua bị kick không tham gia đấu giá sản phẩm này được nữa<br>
 []	Nếu người mua bị kick đang giữ giá, sản phẩm chuyển cho người mua có giá lớn nhất<br>
 []	Quản lý hồ sơ cá nhân (tt)<br>
-[]	Xem danh sách sản phẩm mình đang đăng & còn hạn<br>
+[p]	Xem danh sách sản phẩm mình đang đăng & còn hạn<br>
 []	Xem danh sách sản phẩm đã có người mua<br>
-[]	Được phép đánh giá +1 hoặc -1 người chiến thắng, có gửi kèm 1 đoạn nhận xét<br>
+[o]	Được phép đánh giá +1 hoặc -1 người chiến thắng, có gửi kèm 1 đoạn nhận xét<br>
 
 ==Quản trị (0/9)==<br>
 []	Duyệt yêu cầu xin được bán của người dùng<br>
@@ -81,7 +82,7 @@ x = done ; o = omit<br>
 []	Xoá<br>
 []	Sửa<br>
 
-==Hệ thống (0-1/15)==<br>
+==Hệ thống (0+1+0+0=1/15)==<br>
 [o]	Với mỗi giao dịch “quan trọng”, hệ thống gửi 1 email cho các bên liên quan nhằm thông báo<br>
 []	Ra giá thành công, giá sản phẩm được cập nhật<br>
 []	Gửi người bán<br>
