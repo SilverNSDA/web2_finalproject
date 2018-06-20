@@ -212,7 +212,11 @@ var update_current_price = function(row){
 	bidsRepo.loadCol('auction_id',row.id,{orderBy:price, order:'DESC',limit:2})
 		.then(rows=>{
 			price = rows[1].current_price+row.price_step;
-		}).catch(err=>{console.log(err);});
+		})
+		.then(()=>{
+			auctionsRepo.update(row.id,{current_price:price});
+		})
+		.catch(err=>{console.log(err);});
 }
 router.post('/addblacklist',(req,res)=>{
 	var ban_name = rq.body.ban_name;
