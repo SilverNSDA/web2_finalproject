@@ -96,6 +96,15 @@ class Repo {
 		var sql = `delete from ${this.table} where ${this.id_col} = ${id}`;
 		return mysql_db.delete(sql);
 	}
+	deleteMany(ids){
+		var ids_str = '';
+		for(var id in ids){
+			ids_str += String(id)+',';
+		}
+		ids_str=ids_str.substr(0,ids_string.length - 1);
+		var sql = `delete from ${this.table} where ${this.id_col} in (${ids_str})`;
+		return mysql_db.delete(sql);
+	}
 
 	add(vals){
 		var col_name = '';

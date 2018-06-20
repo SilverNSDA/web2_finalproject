@@ -114,7 +114,16 @@ var auctions_list = function(){
 	});
 }
 
+var blacklist_add = function(){
+  $('#action_show').empty();
+  var form = `<form action="/seller/addblacklist" method="POST">
+    <input type="text" name="ban_name">
+    <button type="submit">Ban</button>
+  </form>`
+  $('#action_show').append(form);
+}
 
 
 $('#products_list').on('click',products_list);
 $('#auctions_list').on('click',auctions_list);
+$('#blacklist_add').on('click',blacklist_add);

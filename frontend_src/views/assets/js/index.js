@@ -218,6 +218,7 @@ var ending = function(){
 }
 
 
+
 window.onload = popular;
 $('#popular').on('click', popular);
 $('#highest_bid').on('click', highest_bid);

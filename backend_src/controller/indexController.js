@@ -10,7 +10,7 @@ router.get('/',(req,res)=>{
 });
 
 router.get('/top5popular',(req,res)=>{
-	var sql = 'select * from `products` p, (select * from `auction` a, (SELECT auction_id, count(id) as count FROM `bid` group by auction_id order by auction_id) c where a.id = c.auction_id) a where a.product_id = p.id order by a.count DESC limit 5';
+	var sql = 'select p.*,a.current_price  from `products` p, (select * from `auction` a, (SELECT auction_id, count(id) as count FROM `bid` group by auction_id order by auction_id) c where a.id = c.auction_id) a where a.product_id = p.id order by a.count DESC limit 5';
 	db.load(sql)
 		.then(rows => {
 	        res.json(rows);
@@ -22,7 +22,7 @@ router.get('/top5popular',(req,res)=>{
 });
 
 router.get('/top5highestbid',(req,res)=>{
-	var sql = 'select * from `products` p, (select * from `auction` order by current_price DESC limit 5)a where p.id = a.product_id';
+	var sql = 'select p.*,a.current_price from `products` p, (select * from `auction` order by current_price DESC limit 5)a where p.id = a.product_id';
 	db.load(sql)
 		.then(rows => {
 	        res.json(rows);
@@ -34,7 +34,7 @@ router.get('/top5highestbid',(req,res)=>{
 });
 
 router.get('/top5ending', (req,res)=>{
-	var sql='select * from `products` p, (select * from `auction` order by created_date limit 5)a where p.id = a.product_id';
+	var sql='select p.*,a.current_price from `products` p, (select * from `auction` order by created_date limit 5)a where p.id = a.product_id';
 	db.load(sql)
 		.then(rows => {
 	        res.json(rows);

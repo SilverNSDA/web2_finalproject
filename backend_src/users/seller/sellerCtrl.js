@@ -171,7 +171,7 @@ router.post('/newauction',(req,res)=>{
 
 router.get('/auctions_list',(req,res)=>{
 	var id = res.locals.user.id;
-	db.load(`SELECT p.*, a.id as auction_id, a.current_price, a.created_date, a.end_date FROM auction a left JOIN products p On a.product_id=p.id and a.seller=p.seller`)
+	db.load(`SELECT p.*, a.id as auction_id, a.created_date, a.end_date, a.current_price FROM auction a left JOIN products p On a.product_id=p.id and a.seller=p.seller`)
 		.then(rows=>{
 			res.statusCode=200;
 			res.json(rows);
@@ -202,6 +202,59 @@ router.get('/log/:id',(req,res)=>{
 
 router.get('/profile', (req,res)=>{
 	res.render('users/seller_profile');
+});
+
+//blacklist
+var blacklistRepo = new Repo('auction_blacklist');
+var usersRepo = newRepo('users');
+var update_current_price = function(row){
+	var price = row.current_price;
+	bidsRepo.loadCol('auction_id',row.id,{orderBy:price, order:'DESC',limit:2})
+		.then(rows=>{
+			price = rows[1].current_price+row.price_step;
+		}).catch(err=>{console.log(err);});
+}
+router.post('/addblacklist',(req,res)=>{
+	var ban_name = rq.body.ban_name;
+	usersRepo.loadCol('username',ban_name)
+		.then(rows=>{
+			var ban = {
+				seller_id: req.session.user.id,
+				ban_id: rows[0].id
+			}
+			if(rows[0].role!=2){
+				req.flash('error','It must be a client to be ban');
+				res.redirect(req.get('referer'));
+			}
+			else{
+				await Promise.all([
+				// delete all bidding records of that client
+				db.delete(`delete from bid where bidder='${ban.ban_id}' and auction_id in (select id from auction where seller="${ban.seller_id}") `),
+				//add ban to blacklist
+				blacklistRepo.add(ban)
+				])
+				.catch(err=>{
+					console.log(err);
+				});
+				//update current_price
+				auctionsRepo.loadCol('seller',ban.seller_id)
+					.then(rows=>{
+						for(var i in rows){
+							update_current_price(rows[i]);
+						}
+					})
+					.catch(err=>{console.log(err);})
+
+			}
+		})
+		.catch(err=>{
+			res.statusCode=500;
+			console.log(err);
+			res.flash('error',err);
+			res.redirect(req.get('referer'));
+		});
+	// res.redirect(req.get('referer'));
+	
 });
 
 module.exports = router;
