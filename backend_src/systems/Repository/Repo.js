@@ -57,12 +57,13 @@ class Repo {
 		var valsStr = '';
 		// console.log(typeof vals);
 		vals.forEach(e=>{
-			valsStr+=''+String(e)+'|';
+			valsStr+=String(e)+'|';
 		});
 		valsStr = valsStr.substr(0, valsStr.length-1);
 
 		var str = options.limit==0?'':`limit ${options.limit}`;
 		var sql = `select * from ${this.table} where ${col} REGEXP '${valsStr}' order by ${options.order_by} ${options.order} ${str}`;
+		console.log(sql);
 		return mysql_db.load(sql);
 	}
 

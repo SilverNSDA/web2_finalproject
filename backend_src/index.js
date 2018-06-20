@@ -102,14 +102,16 @@ app.use('/user',(req, res, next)=>{
 
 // Controller
 var auth = require('./users/auth_controller.js');
-var indexCtrl = require('./controller/indexController.js');
+var anoCtrl = require('./users/anonymous/anonymousCtrl.js');
 // var productCtrl = require('./products/products.js');
 var userCtrl = require('./users/userCtrl.js');
 var sellerCtrl = require('./users/seller/sellerCtrl.js');
+var clientCtrl = require('./users/client/clientCtrl.js');
 // app.use('/products',productCtrl);
-app.use('/',auth, indexCtrl, userCtrl);
+app.use('/',auth, anoCtrl, userCtrl);
 app.use('/user',userCtrl);
 app.use('/seller', sellerCtrl);
+app.use('/client',clientCtrl);
 
 
 

@@ -80,9 +80,9 @@ var popular = function(){
           </div></a>
                 <div class="card-body">
                   <h4 class="card-title">
-                    <a href="#">${item.ProName} </a>
+                    <a href="/client/bid/${item.auction_id}">${item.ProName} </a>
                   </h4>
-                  <h5>${item.current_price}</h5>
+                  <h5>$${item.current_price}</h5>
                   <p class="card-text">${item.Description}</p>
                 </div>
                 <div class="card-footer">
@@ -143,9 +143,9 @@ var highest_bid = function(){
           </div></a>
                 <div class="card-body">
                   <h4 class="card-title">
-                    <a href="#">${item.ProName} </a>
+                    <a href="/client/bid/${item.auction_id}">${item.ProName} </a>
                   </h4>
-                  <h5>${item.current_price}</h5>
+                  <h5>$${item.current_price}</h5>
                   <p class="card-text">${item.Description}</p>
                 </div>
                 <div class="card-footer">
@@ -199,9 +199,9 @@ var ending = function(){
           </div></a>
                 <div class="card-body">
                   <h4 class="card-title">
-                    <a href="#">${item.ProName} </a>
+                    <a href="/client/bid/${item.auction_id}">${item.ProName} </a>
                   </h4>
-                  <h5>${item.current_price}</h5>
+                  <h5>$${item.current_price}</h5>
                   <p class="card-text">${item.Description}</p>
                 </div>
                 <div class="card-footer">

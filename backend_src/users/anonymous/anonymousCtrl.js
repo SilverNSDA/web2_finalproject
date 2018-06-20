@@ -1,6 +1,6 @@
 var router = require('express').Router();
-var Repo = require('../systems/Repository/Repo.js');
-var db = require('../systems/mysql/db.js');
+var Repo = require('../../systems/Repository/Repo.js');
+var db = require('../../systems/mysql/db.js');
 var productsRepo = new Repo('products');
 var auctionsRepo = new Repo('auction');
 var bidsRepo = new Repo('bid');
@@ -10,7 +10,7 @@ router.get('/',(req,res)=>{
 });
 
 router.get('/top5popular',(req,res)=>{
-	var sql = 'select p.*,a.current_price  from `products` p, (select * from `auction` a, (SELECT auction_id, count(id) as count FROM `bid` group by auction_id order by auction_id) c where a.id = c.auction_id) a where a.product_id = p.id order by a.count DESC limit 5';
+	var sql = 'select p.*, a.current_price, a.id as auction_id  from `products` p, (select a.*, c.count from `auction` a, (SELECT auction_id, count(id) as count FROM `bid` group by auction_id order by auction_id) c where a.id = c.auction_id) a where a.product_id = p.id order by a.count DESC limit 5';
 	db.load(sql)
 		.then(rows => {
 	        res.json(rows);
@@ -22,7 +22,7 @@ router.get('/top5popular',(req,res)=>{
 });
 
 router.get('/top5highestbid',(req,res)=>{
-	var sql = 'select p.*,a.current_price from `products` p, (select * from `auction` order by current_price DESC limit 5)a where p.id = a.product_id';
+	var sql = 'select p.*,a.current_price, a.id as auction_id from `products` p, (select a.* from `auction` a order by current_price DESC limit 5)a where p.id = a.product_id';
 	db.load(sql)
 		.then(rows => {
 	        res.json(rows);
@@ -34,7 +34,7 @@ router.get('/top5highestbid',(req,res)=>{
 });
 
 router.get('/top5ending', (req,res)=>{
-	var sql='select p.*,a.current_price from `products` p, (select * from `auction` order by created_date limit 5)a where p.id = a.product_id';
+	var sql='select p.*,a.current_price, a.id as auction_id from `products` p, (select a.* from `auction` a order by created_date limit 5)a where p.id = a.product_id';
 	db.load(sql)
 		.then(rows => {
 	        res.json(rows);
@@ -53,10 +53,15 @@ router.get('/search',(req,res)=>{
 	var upper_limit = limit*(page);
 	var lower_limit = limit*(page-1);
 	var data_end = false;
+	var keys_str ='';
+	keys.forEach(e=>{
+		keys_str+=String(e)+'|'
+	});
+	keys_str=keys_str.substr(0,keys_str.length - 1);
 	// console.log(limit);
 	// console.log(page);
 	// console.log(String(lower_limit)+','+String(upper_limit));
-	productsRepo.loadCol('ProName', keys,{limit:String(lower_limit)+','+String(upper_limit)})
+	db.load(`select p.*, a.id as auction_id from products p, auctions a where p.id=a.product_id and p.ProName REGEXP '${keys_str}' limit ${String(lower_limit)+','+String(upper_limit)}`)
 		.then(rows=>{
 			// res.json(rows);
 			data_end = (rows.length < limit);

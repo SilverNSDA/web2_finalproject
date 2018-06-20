@@ -206,7 +206,7 @@ router.get('/profile', (req,res)=>{
 
 //blacklist
 var blacklistRepo = new Repo('auction_blacklist');
-var usersRepo = newRepo('users');
+var usersRepo = new Repo('users');
 var update_current_price = function(row){
 	var price = row.current_price;
 	bidsRepo.loadCol('auction_id',row.id,{orderBy:price, order:'DESC',limit:2})
@@ -231,7 +231,7 @@ router.post('/addblacklist',(req,res)=>{
 				res.redirect(req.get('referer'));
 			}
 			else{
-				await Promise.all([
+				Promise.all([
 				// delete all bidding records of that client
 				db.delete(`delete from bid where bidder='${ban.ban_id}' and auction_id in (select id from auction where seller="${ban.seller_id}") `),
 				//add ban to blacklist
@@ -239,15 +239,18 @@ router.post('/addblacklist',(req,res)=>{
 				])
 				.catch(err=>{
 					console.log(err);
-				});
-				//update current_price
-				auctionsRepo.loadCol('seller',ban.seller_id)
-					.then(rows=>{
-						for(var i in rows){
-							update_current_price(rows[i]);
-						}
-					})
-					.catch(err=>{console.log(err);})
+				})
+				.then(()=>{
+					//update current_price
+					auctionsRepo.loadCol('seller',ban.seller_id)
+						.then(rows=>{
+							for(var i in rows){
+								update_current_price(rows[i]);
+							}
+						})
+						.catch(err=>{console.log(err);})
+				})
+				
 
 			}
 		})
