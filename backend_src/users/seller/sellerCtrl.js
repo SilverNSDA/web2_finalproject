@@ -12,8 +12,21 @@ var productsRepo = new Repo('products');
 var auctionsRepo = new Repo('auction');
 var bidsRepo = new Repo('bid');
 var path = require('path');
-var bcrypt = require('bcryptjs');
+// var bcrypt = require('bcryptjs');
+var hash = require('object-hash');
 var log = require('../../systems/logging/bid_logging.js')
+
+
+router.use((req,res,next)=>{	
+	if(res.locals.user.role!=1){
+		res.statusCod=401;
+		res.redirect('/')
+	}
+	else{
+		next();
+	}
+});
+
 
 const img_format = ['jpg','png','gif','jpeg','tif','webp']; //accept file extension
 var multer = require('multer');
@@ -76,18 +89,18 @@ router.post('/newproduct',(req,res)=>{
 			// console.log(req.body);
 			var products = {
 				ProName: req.body.proname,
-				img_1: './imgs/'+img1,
-				img_2: './imgs/'+img2,
-				img_3: './imgs/'+img3,
+				img_1: '/imgs/'+img1,
+				img_2: '/imgs/'+img2,
+				img_3: '/imgs/'+img3,
 				seller: req.session.user.id,
 				Description: req.body.description,
 				created_date: today
 			};
 			// console.log(products);
-			productRepo.add(products)
+			productsRepo.add(products)
 				.then(insertID =>{
 					res.statusCode = 200;
-					res.redirect('/users/profile');
+					res.redirect('/user/profile');
 				})
 				.catch(err=>{
 					console.log(err);
@@ -100,7 +113,7 @@ router.post('/newproduct',(req,res)=>{
 });
 
 
-router.post('/products_list',(req,res)=>{
+router.get('/products_list',(req,res)=>{
 	var id = res.locals.user.id;
 	productsRepo.loadCol('seller',id)
 		.then(rows=>{
@@ -130,6 +143,7 @@ router.post('/newauction',(req,res)=>{
 	var today = new Date().toISOString().slice(0, 19).replace('T', ' ');
 	var end_date = new Date();
 	end_date.setDate(end_date.getDate()+7); //7 days
+	end_date = end_date.toISOString().slice(0, 19).replace('T', ' ');
 	var auction ={
 		seller: req.body.seller,
 		product_id: req.body.pro_id,
@@ -137,15 +151,15 @@ router.post('/newauction',(req,res)=>{
 		start_price: req.body.start_price,
 		price_step: req.body.price_step,
 		instant_buyout: req.body.instant_buyout,
-		current_price: req.body.start_price.
+		current_price: req.body.start_price,
 		end_date: end_date
 	};
-	auction.log_path = 'logs/'+String(req.body.seller)+'/'+bcrypt.hash(auction)+'.txt';
+	auction.log_path = 'storage/logs/'+String(req.body.seller)+'/'+hash.MD5(auction)+'.txt';
 
 	auctionsRepo.add(auction)
 		.then(insertID=>{
 			res.statusCode = 201;
-			log.log(`Auction created. Auction start at ${auction.created_date} end at ${auction.end_date}`,path.resolve(__dirname+`/../../storage/${auction.log_path}`);
+			log.log(`Auction created. Auction start at ${auction.created_date} end at ${auction.end_date}`,path.resolve(__dirname+`/../../storage/${auction.log_path}`));
 			res.redirect('/seller/profile');
 		})
 		.catch(err=>{
@@ -155,9 +169,9 @@ router.post('/newauction',(req,res)=>{
 		})
 });
 
-router.post('/auctions_list',(req,res)=>{
+router.get('/auctions_list',(req,res)=>{
 	var id = res.locals.user.id;
-	db.load(`SELECT p.*, a.current_price, a.created_date, a.end_date FROM auction a left JOIN products p On a.product_id=p.id and a.seller=p.seller`)
+	db.load(`SELECT p.*, a.id as auction_id, a.current_price, a.created_date, a.end_date FROM auction a left JOIN products p On a.product_id=p.id and a.seller=p.seller`)
 		.then(rows=>{
 			res.statusCode=200;
 			res.json(rows);
@@ -169,10 +183,25 @@ router.post('/auctions_list',(req,res)=>{
 		});
 });
 
+router.get('/log/:id',(req,res)=>{
+	// console.log(req.params);
+	var a_id = req.params.id;
+	auctionsRepo.load(a_id)
+		.then(rows=>{
+
+			var log_path = rows[0].log_path;
+			res.json(log.getLog(log_path));
+		})
+		.catch(err=>{
+			res.statusCode=404;
+			console.log(err);
+			res.send('Log not found');
+		})
+});
 
 
 router.get('/profile', (req,res)=>{
-	res.render('users/seller_profiles');
+	res.render('users/seller_profile');
 });
 
 module.exports = router;

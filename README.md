@@ -7,26 +7,26 @@
 <br><br>
 ##Yêu cầu: 
 <br>#SITE ĐẤU GIÁ TRỰC TUYẾN<br>
-Overall(16+6+3+2=27/78)
+Overall(16+10+1+6=32/78)
 
 
 x = done ; o = ommit ; r = replaced with other feature ; p = partly done<br>
-==Người dùng nặc danh (ko đăng nhập) (14+2+0+2=18/24)==<br>
+==Người dùng nặc danh (ko đăng nhập) (14+3+1+2=21/24)==<br>
 [x]	Trang chủ<br>
 [x]	Top 5 sản phẩm có nhiều lượt ra giá nhất<br>
 [x]	Top 5 sản phẩm có giá cao nhất<br>
 [x]	Top 5 sản phẩm gần kết thúc<br>
 [x]	Tìm kiếm sản phẩm<br>
-[]	Tìm theo tên and/or Tìm theo danh mục<br>
+[o]	Tìm theo tên and/or Tìm theo danh mục<br>
 [x]	Phân trang kết quả<br>
 [x]	Có số trang cụ thể<br>
 [o]	Hoặc KHÔNG (load more button + ajax)<br>
 []	Sắp xếp theo ý người dùng<br>
 []	Thời gian kết thúc giảm dần<br>
 []	Giá tăng dần<br>
-[]	Những sản phẩm mới đăng trong vòng N phút sẽ có thể hiện khác các sản phẩm còn lại<br>
+[o]	Những sản phẩm mới đăng trong vòng N phút sẽ có thể hiện khác các sản phẩm còn lại<br>
 [p]	Thể hiện đủ các thông tin: 1 hình ảnh, tên sản phẩm, giá hiện tại, người dùng đang giữ giá (mã hoá),  giá mua ngay (nếu có), thời gian còn lại, số lượt ra giá hiện tại<br>
-[]	Xem chi tiết sản phẩm đấu giá<br>
+[r]	Xem chi tiết sản phẩm đấu giá<br>
 [x]	Thể hiện đầy đủ 3 hình ảnh<br>
 [x]	Có mô tả html<br>
 [p]	Thể hiện đầy đủ các thông tin của sản phẩm: tên, giá hiện tại, giá mua ngay (nếu có), người bán & điểm đánh giá (url), người đang giữ giá cao nhất & điểm đánh giá (url), thời điểm đăng, thời điểm kết thúc<br>
@@ -56,19 +56,19 @@ x = done ; o = ommit ; r = replaced with other feature ; p = partly done<br>
 []	Được phép đánh giá người bán +1 hoặc -1, gửi kèm 1 đoạn nhận xét<br>
 []	Xin được bán trong vòng 7 ngày<br>
 
-==Người bán (người dùng có quyền đăng bán & đã đăng nhập) (2+3+3+0=8/13)==<br>
+==Người bán (người dùng có quyền đăng bán & đã đăng nhập) (2+5+2+2=11/13)==<br>
 [x]	Đăng 1 sản phẩm lên đấu giá<br>
 [x]	Nhập đủ thông tin: tên sản phẩm, tối đa 3 ảnh, giá khởi điểm, bước giá, giá mua ngay (nếu cần), thời gian đăng, mô tả (html)<br>
 [r]	Có tự động gia hạn ko? Nếu có, khi có lượt đấu giá mới trước khi kết thúc 5 phút, sản phẩm tự động gia hạn thêm 10p.<br>
 [r]	Xem chi tiết sản phẩm<br>
 [o]	Cập nhật thông tin sản phẩm đã đăng<br>
 [o]	Chỉ cho phép THÊM thông tin mô tả (thể hiện xem ở desc.txt)<br>
-[]	Xem lịch sử ra giá => KICK người mua ra khỏi sản phẩm<br>
+[p]	Xem lịch sử ra giá => KICK người mua ra khỏi sản phẩm<br>
 []	Người mua bị kick không tham gia đấu giá sản phẩm này được nữa<br>
 []	Nếu người mua bị kick đang giữ giá, sản phẩm chuyển cho người mua có giá lớn nhất<br>
-[]	Quản lý hồ sơ cá nhân (tt)<br>
+[o]	Quản lý hồ sơ cá nhân (tt)<br>
 [p]	Xem danh sách sản phẩm mình đang đăng & còn hạn<br>
-[]	Xem danh sách sản phẩm đã có người mua<br>
+[o]	Xem danh sách sản phẩm đã có người mua<br>
 [o]	Được phép đánh giá +1 hoặc -1 người chiến thắng, có gửi kèm 1 đoạn nhận xét<br>
 
 ==Quản trị (0/9)==<br>

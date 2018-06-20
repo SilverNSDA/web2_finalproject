@@ -7,21 +7,27 @@ var router = require('express').Router();
 
 
 router.get('/profile', (req,res)=>{
+	console.log(res.locals.user);
 	if(res.locals.user.id == ''){
 		res.redirect('/login');
+		// console.log("in");
 	}else{
 		if(res.locals.user.role == 0){
 			res.redirect('/admin/profile');
-			// res.render('users/admin_profiles');
+			// res.render('users/admin_profile');
+			// console.log("in");
 		}
 		if(res.locals.user.role == 1){
 			res.redirect('/seller/profile');
-			// res.render('users/seller_profiles');
+			// res.render('users/seller_profile');
+			// console.log("in");
 		}
 		if(res.locals.user.role == 2){
 			res.redirect('/client/profile');
-			// res.render('users/client_profiles');
+			// res.render('users/client_profile');
+			// console.log("in");
 		}
+
 	}
 });
 

@@ -63,7 +63,7 @@ exports.login = function(req, res){
 					req.session.user = {
 						id: row.id,
 						name: row.username,
-						role: r==0? "admin": (r==1? "seller":"client")
+						role: r
 
 					};
 					// res.send({

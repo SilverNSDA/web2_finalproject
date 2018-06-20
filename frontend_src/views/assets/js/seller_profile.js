@@ -39,11 +39,11 @@ var products_list = function(){
               <h4 class="card-title">
                 <a href="#">${item.ProName} </a>
               </h4>
-              <h5>${item.current_price || ''}</h5>
+              <h5>Current bid: ${item.current_price || ''}$ </h5>
               <p class="card-text">${item.Description}</p>
             </div>
             <div class="card-footer">
-              <a href="/newauction?id=${item.id}">Create auction</a>
+              <a href="./newauction?id=${item.id}">Create auction</a>
             </div>
           </div>
         </div>
@@ -57,7 +57,7 @@ var products_list = function(){
 
 var auctions_list = function(){
 	$.ajax({
-		url:'http://localhost:3000/seller/auction_list',
+		url:'http://localhost:3000/seller/auctions_list',
 		dataType:'json',
 		timeout: 10000
 	}).done(data=>{
@@ -102,6 +102,7 @@ var auctions_list = function(){
             <div class="card-footer">
               <p><small> Start date: ${item.created_date}</small></p>
               <p><small> End date: ${item.end_date}</small></p>
+              <p><a href="./log/${item.auction_id}">See log </a></p>
             </div>
           </div>
         </div>
