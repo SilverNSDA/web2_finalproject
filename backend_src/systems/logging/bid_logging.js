@@ -19,7 +19,7 @@ exports.log = function(str, log_path){
     	var stack = callsite();
     	log_path = path.resolve(path.dirname(stack[1].getFileName())+log_path);
     }
-    if(!fs.existsSync(log_path)){
+    if(!fs.existsSync(path.dirname(log_path))){
         fs.mkdirSync(path.dirname(log_path));
     }
     fs.appendFile(log_path, log, err=>{if(err) console.log(err);});

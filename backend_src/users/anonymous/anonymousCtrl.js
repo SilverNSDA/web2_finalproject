@@ -13,6 +13,7 @@ router.get('/top5popular',(req,res)=>{
 	var sql = 'select p.*, a.current_price, a.id as auction_id  from `products` p, (select a.*, c.count from `auction` a, (SELECT auction_id, count(id) as count FROM `bid` group by auction_id order by auction_id) c where a.id = c.auction_id) a where a.product_id = p.id order by a.count DESC limit 5';
 	db.load(sql)
 		.then(rows => {
+			res.statusCode= 200;
 	        res.json(rows);
 	    }).catch(err => {
 	        console.log(err);

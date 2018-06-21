@@ -43,7 +43,7 @@
 			</div>
 		</div>
 		<div class="col-lg-8 col-md-12 mb-8">
-			<form action="/bid/<%= item.auction_id %>" method="POST">
+			<form action="/client/bid/<%= item.auction_id %>" method="POST">
 				<label for="price">Price</label><input type="number" name="price" id="price">
 				<input type="hidden" id="step" value="<%= item.price_step %>">
 				<input type="hidden" id="buyout" value="<%= item.instant_buyout %>">

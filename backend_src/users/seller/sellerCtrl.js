@@ -83,8 +83,10 @@ router.post('/newproduct',(req,res)=>{
 			// console.log(req.files);
 			// console.log(res.req.files.img_1[0].originalname.extension);
 			var img1 = res.req.files.img_1[0].filename;
-			var img2 = res.req.files.img_2[0].filename;
-			var img3 = res.req.files.img_3[0].filename;
+			var img2 = res.req.files.img_2;
+			var img3 = res.req.files.img_3;
+			img2 = img2? img2[0].filename:'';
+			img3 = img3? img3[0].filename:'';
 			var today = new Date().toISOString().slice(0, 19).replace('T', ' ');
 			// console.log(req.body);
 			var products = {
@@ -159,7 +161,7 @@ router.post('/newauction',(req,res)=>{
 	auctionsRepo.add(auction)
 		.then(insertID=>{
 			res.statusCode = 201;
-			log.log(`Auction created. Auction start at ${auction.created_date} end at ${auction.end_date}`,path.resolve(__dirname+`/../../storage/${auction.log_path}`));
+			log.log(`Auction created. Auction start at ${auction.created_date} end at ${auction.end_date}`,path.resolve(__dirname+`/../../${auction.log_path}`));
 			res.redirect('/seller/profile');
 		})
 		.catch(err=>{

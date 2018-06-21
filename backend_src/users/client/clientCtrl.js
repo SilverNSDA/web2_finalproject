@@ -1,6 +1,7 @@
-var router= require('express');.Router();
+var router= require('express').Router();
+var db = require('../../systems/mysql/db.js');
 var Repo = require('../../systems/Repository/Repo.js');
-var auctionsRepo = new Repo('auctions');
+var auctionsRepo = new Repo('auction');
 var bidsRepo = new Repo('bid');
 
 router.use((req,res,next)=>{	
@@ -19,7 +20,7 @@ router.get('/profile',(req,res)=>{
 
 router.get('/bid/:id',(req,res)=>{
 	var auction_id = req.params.id;
-	db.load(`select p.*, a.id as auction_id, a.price_step, a.instant_buyout from products p, auctions a where p.id=a.product_id and a.id=${auction_id}`)
+	db.load(`select p.*, a.id as auction_id, a.price_step, a.instant_buyout from products p, auction a where p.id=a.product_id and a.id=${auction_id}`)
 		.then(rows=>{
 			res.render('users/client/bid',{item: rows[0]});
 		})
@@ -59,19 +60,19 @@ router.post('/bid/:id',(req,res)=>{
 				bidsRepo.add(bid)
 					.then(()=>{
 						update_current_price(row);
-						res.flash('success','Bid success');
+						req.flash('success','Bid success');
 						res.redirect('/');
 					})
 					.catch(err=>{console.log(err);});
 			}
 			else{
 				//error
-				res.flash('error','Invalid price');
+				req.flash('error','Invalid price');
 				res.redirect(req.get('referer'));
 			}
 		})
 		.catch(err=>{
-			res.flash('error',err);
+			req.flash('error',err);
 			res.redirect(req.get('referer'));
 		});
 });
